@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        async function loadPokemon(){ // Funktion für das Laden des Pokemons
+            let url = 'https://pokeapi.co/api/v2/pokemon/charmander'; // URL mit API 
+            let response = await fetch(url); // Daten aus der API ziehen
+            let responseAsJson = await response.json(); // Text in JSON umwandeln
+
+            console.log('Loaded pokemon', responseAsJson); // in der Konsole kontrollieren
+        }
+
+    </script>
+</head>
+<body onload="loadPokemon()">
+    
+</body>
+</html>
