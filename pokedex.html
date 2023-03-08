@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,17 +8,40 @@
     <title>Document</title>
 
     <script>
-        async function loadPokemon(){ // Funktion für das Laden des Pokemons
+        let currentPokemon;  // Variable, um in allen Funktionen auf den currentPokemon zugreifen kann
+
+        async function loadPokemon() { // Funktion für das Laden des Pokemons
             let url = 'https://pokeapi.co/api/v2/pokemon/charmander'; // URL mit API 
             let response = await fetch(url); // Daten aus der API ziehen
-            let responseAsJson = await response.json(); // Text in JSON umwandeln
+            currentPokemon = await response.json(); // Text in JSON umwandeln
+            console.log('Loaded pokemon', currentPokemon); // in der Konsole kontrollieren
 
-            console.log('Loaded pokemon', responseAsJson); // in der Konsole kontrollieren
+            renderPokemonInfo();
         }
 
+        function renderPokemonInfo(){ // zuständig Informationen anzuzeigen
+            document.getElementById('pokemonName').innerHTML = currentPokemon['name']; // zeigt aktuellen Namen an
+        }
+
+        // Name + Bild als Aufgabe
     </script>
+    <style>
+        body {
+            margin: 0;
+        }
+        #pokedex {
+            /* # - Element einer ID */
+            min-height: 50vh;
+            background-color: rgb(175, 16, 16);
+            color: white;
+        }
+    </style>
 </head>
+
 <body onload="loadPokemon()">
-    
+    <div id="pokedex">
+        <h1 id="pokemonName">Name</h1>
+    </div>
 </body>
+
 </html>
